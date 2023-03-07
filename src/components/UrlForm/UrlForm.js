@@ -17,7 +17,7 @@ export default function UrlForm({addUrl}) {
       addUrl(data)
     })
     .catch(error => console.log(error))
-   clearInputs();
+    clearInputs();
   }
 
   const clearInputs = () => {
@@ -25,29 +25,27 @@ export default function UrlForm({addUrl}) {
     setLong_url('')
   }
   
-    return (
-      <form>
-        <input
-          type='text'
-          placeholder='Title...'
-          name='title'
-          value={title}
-          onChange={e => setTitle(e.target.value)}
-        />
-
-        <input
-          type='text'
-          placeholder='URL to Shorten...'
-          name='long_url'
-          value={long_url}
-          onChange={e => setLong_url(e.target.value)}
-        />
-
-        <button onClick={e => handleSubmit(e)}>
-          Shorten Please!
-        </button>
-      </form>
-    )
+  return (
+    <form>
+      <input
+        type='text'
+        placeholder='Title...'
+        name='title'
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+      />
+      <input
+        type='text'
+        placeholder='URL to Shorten...'
+        name='long_url'
+        value={long_url}
+        onChange={e => setLong_url(e.target.value)}
+      />
+      <button onClick={e => handleSubmit(e)}>
+        Shorten Please!
+      </button>
+    </form>
+  )
   
 }
 

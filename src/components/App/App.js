@@ -5,7 +5,6 @@ import UrlContainer from '../UrlContainer/UrlContainer';
 import UrlForm from '../UrlForm/UrlForm';
 
 export default function App() {
-
   const [urls, setUrls] = useState([])
 
   useEffect(() => {
@@ -16,16 +15,15 @@ export default function App() {
 
   const addUrl = newUrl => setUrls([...urls, newUrl])
  
-    return (
-      <main className="App">
-        <header>
-          <h1>URL Shortener</h1>
-          <UrlForm addUrl={addUrl}/>
-        </header>
-
-        <UrlContainer urls={urls}/>
-      </main>
-    )
+  return (
+    <main className="App">
+      <header>
+        <h1>URL Shortener</h1>
+        <UrlForm addUrl={addUrl}/>
+      </header>
+      <UrlContainer urls={urls}/>
+    </main>
+  )
   
 }
 
