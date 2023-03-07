@@ -2,21 +2,8 @@ import React, { useState } from 'react';
 import { postUrls } from '../../apiCalls';
 
 export default function UrlForm({addUrl}) {
-
   const [title, setTitle] = useState('')
   const [long_url, setLong_url] = useState('')
-  // constructor(props) {
-  //   super();
-  //   this.props = props;
-  //   this.state = {
-  //     title: '',
-  //     urlToShorten: ''
-  //   };
-  // }
-
-  // handleNameChange = e => {
-  //   this.setState({ [e.target.name]: e.target.value });
-  // }
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -36,7 +23,6 @@ export default function UrlForm({addUrl}) {
   const clearInputs = () => {
     setTitle('')
     setLong_url('')
-   
   }
   
     return (

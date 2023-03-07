@@ -1,6 +1,6 @@
 describe('URL Shortener', () => {
   beforeEach(() => {
-    cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {fixture: 'example'})
+    cy.intercept('GET', 'http://localhost:3001/api/v1/urls', {fixture: 'urls'})
     cy.visit('http://localhost:3000/')
   })
 
@@ -30,11 +30,11 @@ describe('URL Shortener', () => {
     .type('Test').should('have.value', 'Test')
     cy.get('[placeholder="URL to Shorten..."]')
     .type('This is a long url').should('have.value', 'This is a long url')
+    cy.intercept('POST', 'http://localhost:3001/api/v1/urls', {title: 'Test', long_url: 'This is a long url'})
     cy.get('button').click()
     cy.get('section').find('.url').should('have.length', 2)
     cy.get('section > :nth-child(1)').contains('Awesome photo')
     cy.get('section > :nth-child(2)').contains('Test')
-
   })
 
 })
