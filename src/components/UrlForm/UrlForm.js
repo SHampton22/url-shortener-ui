@@ -1,53 +1,68 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
+import { postUrls } from '../../apiCalls';
 
-class UrlForm extends Component {
-  constructor(props) {
-    super();
-    this.props = props;
-    this.state = {
-      title: '',
-      urlToShorten: ''
-    };
-  }
+export default function UrlForm({addUrl}) {
 
-  handleNameChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
-  }
+  const [title, setTitle] = useState('')
+  const [long_url, setLong_url] = useState('')
+  // constructor(props) {
+  //   super();
+  //   this.props = props;
+  //   this.state = {
+  //     title: '',
+  //     urlToShorten: ''
+  //   };
+  // }
 
-  handleSubmit = e => {
+  // handleNameChange = e => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // }
+
+  const handleSubmit = e => {
     e.preventDefault();
-    this.clearInputs();
+    const newUrl = {
+      long_url,
+      title
+    }
+    postUrls(newUrl)
+    .then((data) => {
+      console.log(data)
+      addUrl(data)
+    })
+    .catch(error => console.log(error))
+   clearInputs();
   }
 
-  clearInputs = () => {
-    this.setState({title: '', urlToShorten: ''});
+  const clearInputs = () => {
+    setTitle('')
+    setLong_url('')
+   
   }
-
-  render() {
+  
     return (
       <form>
         <input
           type='text'
           placeholder='Title...'
           name='title'
-          value={this.state.title}
-          onChange={e => this.handleNameChange(e)}
+          value={title}
+          onChange={e => setTitle(e.target.value)}
         />
 
         <input
           type='text'
           placeholder='URL to Shorten...'
-          name='title'
-          value={this.state.title}
-          onChange={e => this.handleNameChange(e)}
+          name='long_url'
+          value={long_url}
+          onChange={e => setLong_url(e.target.value)}
         />
 
-        <button onClick={e => this.handleSubmit(e)}>
+        <button onClick={e => handleSubmit(e)}>
           Shorten Please!
         </button>
       </form>
     )
-  }
+  
 }
 
-export default UrlForm;
+
